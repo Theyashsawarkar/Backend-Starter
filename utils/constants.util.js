@@ -1,7 +1,9 @@
-require("dotenv").config();
-const { toBool } = require("./commonFunctions");
+import dotenv from "dotenv";
+import { toBool } from "../utils/commonFunctions.util.js";
 
-let CONSTANTS = {
+await dotenv.config();
+
+export let CONSTANTS = {
 
   PORT: process.env.PORT,
   CRON: process.env.SUBSCRIPTION_PROPERTY_CRON || "0 0 * * *", // runs everyday at 12 am
@@ -9,7 +11,7 @@ let CONSTANTS = {
   JWT: {
     SECRET: process.env.JWT_SECRET || "qwertyuiopasdfghjklzxcvbnm",
     EXPIRES_IN: process.env.JWT_EXPIRES_IN || "12h",
-    ALGORITH: process.env.JWT_ALGORITHM || "HS256",
+    ALGORITHM: process.env.JWT_ALGORITHM || "HS256",
   },
 
   OTP_VALID_TIME_MINUTES: Number(process.env.OTP_VALID_TIME_MINUTES || 5),
@@ -32,7 +34,7 @@ let CONSTANTS = {
   },
 
   email_templates: {
-    aggrement: "AGREEMENT",
+    agreement: "AGREEMENT",
     expired_subscription: "EXPIRED_SUBSCRIPTION_EMAIL",
     soon_to_expire_subscription: "SOON_TO_EXPIRE_SUBSCRIPTION",
   },
@@ -88,7 +90,7 @@ let CONSTANTS = {
     ALLOWED_FILE_TYPES: "ALLOWED_FILE_TYPE",
   },
 
-  ENVIROMENTS: {
+  ENVIRONMENTS: {
     development: "DEVELOPMENT",
     test: "TEST",
     production: "PRODUCTION",
@@ -103,5 +105,3 @@ let CONSTANTS = {
     DELAY: Number(process.env.REDIS_RETRY_DELAY || 3000), // max retry delay in ms
   },
 };
-
-module.exports = { CONSTANTS };

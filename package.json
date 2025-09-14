@@ -1,39 +1,74 @@
 {
-  "name": "greenland",
-  "version": "0.0.0",
+  "name": "backend-starter-kit",
+  "version": "1.0.0",
+  "description": "A robust and scalable Node.js backend starter kit with production-ready configurations and best practices.",
+  "author": "Yash Sawarkar < yashsawarkar01@gmail.com >",
+  "license": "MIT",
   "private": true,
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",                // Start server in production
+    "dev": "nodemon ./bin/www",              // Development server with auto reload
+
+    // pm2 scripts for production process management
+    "pm2-start": "pm2 start ./bin/www --name backend-starter-kit",
+    "pm2-restart": "pm2 restart backend-starter-kit",
+    "pm2-stop": "pm2 stop backend-starter-kit",
+    "pm2-logs": "pm2 logs backend-starter-kit",
+    "pm2-save": "pm2 save",
+    "pm2-setup": "pm2 startup"
+
+    "test": "jest --coverage",               // Run tests with coverage report
+    "lint": "eslint .",                      // Lint codebase for consistency and errors
+    "prepare": "husky install",              // Set up git hooks for workflow checks
+    "check-updates": "ncu",                  // Check for dependency updates
+    "update-dependencies": "ncu -u",         // Update dependencies to latest versions
+    "install-dependencies": "npm install",   // Install all dependencies
+    "full-update": "npm run check-updates && npm run update-dependencies && npm run install-dependencies"
   },
   "dependencies": {
-    "axios": "^1.12.1",
-    "bcrypt": "^6.0.0",
-    "body-parser": "^2.2.0",
-    "cookie-parser": "~1.4.7",
-    "cors": "^2.8.5",
-    "crypto": "^1.0.1",
-    "debug": "~4.4.1",
-    "dotenv": "^17.2.2",
-    "express": "5.1.0",
-    "http-errors": "~2.0.0",
-    "http-status": "^2.1.0",
-    "jade": "~1.11.0",
-    "joi": "^18.0.1",
-    "jsonwebtoken": "^9.0.2",
-    "moment": "^2.30.1",
-    "morgan": "~1.10.1",
-    "multer": "^2.0.2",
-    "node-cron": "^4.2.1",
-    "nodemailer": "^7.0.6",
-    "nodemon": "^3.1.10",
-    "pdfkit": "^0.17.2",
-    "pg": "^8.16.3",
-    "puppeteer": "^24.20.0",
-    "redis": "^5.8.2",
-    "sequelize": "^6.37.7",
-    "stripe": "^18.5.0",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
-    "uuid": "^13.0.0"
+    "bcrypt": "^6.0.0",                      // For hashing passwords securely
+    "compression": "^1.7.4",                 // Gzip compression for responses
+    "config": "^3.3.9",                      // Manage environment-specific settings
+    "cookie-parser": "~1.4.7",               // Parse cookies from HTTP requests
+    "cors": "^2.8.5",                        // Handle Cross-Origin Resource Sharing
+    "crypto": "^1.0.1",                      // Cryptography utilities (hashing, encryption)
+    "debug": "~4.4.1",                       // Simple debugging logger
+    "dotenv": "^17.2.2",                     // Load environment variables from .env file
+    "express": "5.1.0",                      // Web framework for building REST APIs
+    "express-async-errors": "^3.1.1",        // Handle async errors without try-catch everywhere
+    "express-rate-limit": "^7.0.0",          // Limit repeated requests to prevent abuse
+    "express-validator": "^7.0.1",           // Validate incoming request data
+    "helmet": "^7.0.0",                      // Secure HTTP headers for protection
+    "hpp": "^0.2.3",                         // Prevent HTTP parameter pollution attacks
+    "http-errors": "~2.0.0",                 // Standardize error responses
+    "http-status": "^2.1.0",                 // HTTP status codes helper
+    "joi": "^18.0.1",                        // Object schema validation
+    "jsonwebtoken": "^9.0.2",                // JWT authentication
+    "moment": "^2.30.1",                     // Date and time manipulation
+    "morgan": "~1.10.1",                     // HTTP request logging
+    "multer": "^2.0.2",                      // Handling multipart/form-data (file uploads)
+    "node-cron": "^4.2.1",                   // Scheduled tasks like cron jobs
+    "nodemailer": "^7.0.6",                  // Sending emails via SMTP
+    "pdfkit": "^0.17.2",                     // Create PDF documents programmatically
+    "pg": "^8.16.3",                         // PostgreSQL client
+    "prom-client": "^14.2.0",                // Expose metrics for monitoring (Prometheus)
+    "puppeteer": "^24.20.0",                 // Headless browser automation
+    "redis": "^5.8.2",                       // Caching, pub/sub messaging, and session storage
+    "sequelize": "^6.37.7",                  // ORM for SQL databases
+    "sentry": "^7.0.0",                      // Real-time error tracking and performance monitoring
+    "stripe": "^18.5.0",                     // Payment processing
+    "swagger-jsdoc": "^6.2.8",               // Generate API documentation from JSDoc comments
+    "swagger-ui-express": "^5.0.1",          // Serve Swagger UI for API documentation
+    "uuid": "^13.0.0",                       // Generate unique identifiers
+    "winston": "^3.9.0"                      // Advanced logging with transport options
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",                     // Code linter to enforce style and catch bugs
+    "husky": "^9.0.0",                       // Git hooks automation for pre-commit/pre-push checks
+    "jest": "^29.6.1",                       // Testing framework for unit and integration tests
+    "nodemon": "^3.1.10",                     // Auto-restarts server on file changes
+    "npm-check-updates": "^16.15.0",          // Checks for dependency updates
+    "supertest": "^6.3.3"                     // HTTP assertions for API testing
   }
 }
